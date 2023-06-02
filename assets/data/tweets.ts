@@ -2,10 +2,10 @@ const allTweets = [
 	{
 		id: "t0",
 		user: {
-			id: "u1",
-			username: "VadimNotJustDev",
-			name: "Vadim",
-			image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.png",
+			id: "987654321",
+			name: "Zuck",
+			username: "zuck",
+			image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/zuck.jpeg",
 		},
 		createdAt: "2020-08-27T12:00:00.000Z",
 		content:
@@ -66,10 +66,10 @@ const allTweets = [
 	{
 		id: "t1",
 		user: {
-			id: "u1",
-			username: "VadimNotJustDev",
-			name: "Vadim",
-			image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.png",
+			id: "987654321",
+			name: "Zuck",
+			username: "zuck",
+			image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/zuck.jpeg",
 		},
 		createdAt: "2020-08-27T12:00:00.000Z",
 		content:
@@ -82,10 +82,10 @@ const allTweets = [
 	{
 		id: "t2",
 		user: {
-			id: "u1",
-			username: "VadimNotJustDev",
-			name: "Vadim",
-			image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.png",
+			id: "987654321",
+			name: "Zuck",
+			username: "zuck",
+			image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/zuck.jpeg",
 		},
 		createdAt: "2020-08-27T12:00:00.000Z",
 		content:
@@ -111,10 +111,10 @@ const allTweets = [
 	{
 		id: "t4",
 		user: {
-			id: "u1",
-			username: "VadimNotJustDev",
-			name: "Vadim",
-			image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.png",
+			id: "987654321",
+			name: "Zuck",
+			username: "zuck",
+			image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/zuck.jpeg",
 		},
 		createdAt: "2020-08-27T12:00:00.000Z",
 		content:

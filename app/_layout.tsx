@@ -57,7 +57,11 @@ function RootLayoutNav() {
 					/>
 					<Stack.Screen
 						name="detail/[id]"
-						options={{ title: "detail" }}
+						options={{ title: "Detail" }}
+					/>
+					<Stack.Screen
+						name="new-tweet"
+						options={{ title: "New Tweet", headerShown: false }}
 					/>
 				</Stack>
 			</ThemeProvider>
