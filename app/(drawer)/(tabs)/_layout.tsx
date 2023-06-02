@@ -1,6 +1,6 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Tabs } from "expo-router";
-import { Pressable, useColorScheme } from "react-native";
+import { Link, Tabs, useNavigation } from "expo-router";
+import { Pressable, Image, useColorScheme } from "react-native";
 
 import Colors from "../../../constants/Colors";
 
@@ -13,6 +13,25 @@ function TabBarIcon(props: {
 }) {
 	return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
+
+const AvatarProfileHeader = () => {
+	const navigation = useNavigation();
+
+	return (
+		<Pressable onPress={() => navigation.openDrawer()}>
+			<Image
+				src="https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/zuck.jpeg"
+				style={{
+					width: 25,
+					height: 25,
+					borderRadius: 30,
+					marginLeft: 9,
+					marginRight: 98,
+				}}
+			/>
+		</Pressable>
+	);
+};
 
 export default function TabLayout() {
 	const colorScheme = useColorScheme();
@@ -48,6 +67,7 @@ export default function TabLayout() {
 							</Pressable>
 						</Link>
 					),
+					headerLeft: () => <AvatarProfileHeader />,
 				}}
 			/>
 			<Tabs.Screen
