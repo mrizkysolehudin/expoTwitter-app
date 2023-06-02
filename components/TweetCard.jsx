@@ -1,42 +1,67 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
-import { Entypo, EvilIcons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import IconButton from "./IconButton";
+import { Link } from "expo-router";
 
 const TweetCard = ({ tweetItem }) => {
 	return (
-		<View style={styles.container}>
-			<Image src={tweetItem.user.image} style={styles.userImage} />
+		<Link href={`/detail/${tweetItem.id}`} asChild>
+			<Pressable style={styles.container}>
+				<Image src={tweetItem.user.image} style={styles.userImage} />
 
-			<View style={styles.mainContainer}>
-				<View style={styles.flexRow}>
-					<Text style={styles.name}>{tweetItem.user.name}</Text>
-					<Text style={styles.userName}>
-						@{tweetItem.user.username}
-					</Text>
+				<View style={styles.mainContainer}>
+					<View style={styles.flexBetween}>
+						<View style={styles.flex}>
+							<Text style={styles.name}>
+								{tweetItem.user.name}
+							</Text>
+							<Text style={styles.userName}>
+								@{tweetItem.user.username} · 8h
+							</Text>
+						</View>
+
+						<Entypo
+							name="dots-three-horizontal"
+							size={13}
+							color="grey"
+							style={{ transform: "rotate(90deg)", opacity: 0.6 }}
+						/>
+					</View>
+
+					<Text>{tweetItem.content}</Text>
+
+					{tweetItem.image && (
+						<Image src={tweetItem.image} style={styles.imageItem} />
+					)}
+
+					<View style={styles.listIcon}>
+						<IconButton
+							name="comment"
+							text={tweetItem.numberOfLikes}
+						/>
+						<IconButton
+							name="retweet"
+							text={tweetItem.numberOfLikes}
+						/>
+						<IconButton
+							name="heart"
+							text={tweetItem.numberOfLikes}
+						/>
+						<IconButton
+							name="chart"
+							text={tweetItem.numberOfLikes}
+						/>
+						<Entypo
+							name="share"
+							size={15}
+							color="grey"
+							style={{ marginLeft: -8, marginTop: 1 }}
+						/>
+					</View>
 				</View>
-
-				<Text>{tweetItem.content}</Text>
-
-				{tweetItem.image && (
-					<Image src={tweetItem.image} style={styles.imageItem} />
-				)}
-
-				<View style={styles.listIcon}>
-					<IconButton name="comment" text={tweetItem.numberOfLikes} />
-					<IconButton name="retweet" text={tweetItem.numberOfLikes} />
-					<IconButton name="heart" text={tweetItem.numberOfLikes} />
-					<IconButton name="chart" text={tweetItem.numberOfLikes} />
-
-					<Entypo
-						name="share"
-						size={15}
-						color="grey"
-						style={{ marginLeft: -8, marginTop: 1 }}
-					/>
-				</View>
-			</View>
-		</View>
+			</Pressable>
+		</Link>
 	);
 };
 
@@ -53,6 +78,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		padding: 10,
 		borderBottomWidth: StyleSheet.hairlineWidth,
+		backgroundColor: "white",
 		borderColor: "lightgrey",
 	},
 	mainContainer: {
@@ -67,9 +93,14 @@ const styles = StyleSheet.create({
 		marginLeft: 4,
 		color: "grey",
 	},
-	flexRow: {
+	flex: {
 		flexDirection: "row",
 		alignItems: "center",
+	},
+	flexBetween: {
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "space-between",
 	},
 	imageItem: {
 		width: "100%",
