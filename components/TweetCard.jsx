@@ -6,7 +6,7 @@ import { Link } from "expo-router";
 
 const TweetCard = ({ tweetItem }) => {
 	return (
-		<Link href={`/detail/${tweetItem.id}`} asChild>
+		<Link href={`/feed/detail/${tweetItem.id}`} asChild>
 			<Pressable style={styles.container}>
 				<Image src={tweetItem.user.image} style={styles.userImage} />
 
@@ -69,8 +69,8 @@ export default TweetCard;
 
 const styles = StyleSheet.create({
 	userImage: {
-		width: 60,
-		height: 60,
+		width: 50,
+		height: 50,
 		borderRadius: 30,
 	},
 

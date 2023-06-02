@@ -7,6 +7,10 @@ import Colors from "../../../constants/Colors";
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
+export const unstable_settings = {
+	initialRouteName: "two",
+};
+
 function TabBarIcon(props: {
 	name: React.ComponentProps<typeof FontAwesome>["name"];
 	color: string;
@@ -26,7 +30,7 @@ const AvatarProfileHeader = () => {
 					height: 25,
 					borderRadius: 30,
 					marginLeft: 9,
-					marginRight: 98,
+					marginRight: 120,
 				}}
 			/>
 		</Pressable>
@@ -42,9 +46,9 @@ export default function TabLayout() {
 				tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
 			}}>
 			<Tabs.Screen
-				name="index"
+				name="feed"
 				options={{
-					title: "Tab Home",
+					title: "Feed",
 					tabBarIcon: ({ color }) => (
 						<TabBarIcon name="code" color={color} />
 					),

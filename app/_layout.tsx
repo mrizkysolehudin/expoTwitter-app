@@ -48,21 +48,16 @@ function RootLayoutNav() {
 				value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 				<Stack>
 					<Stack.Screen
+						name="(drawer)"
+						options={{ headerShown: false }}
+					/>
+					<Stack.Screen
 						name="modal"
 						options={{ presentation: "modal" }}
 					/>
 					<Stack.Screen
-						name="detail/[id]"
-						options={{ title: "Detail" }}
-					/>
-					<Stack.Screen
 						name="new-tweet"
 						options={{ title: "New Tweet", headerShown: false }}
-					/>
-
-					<Stack.Screen
-						name="(drawer)"
-						options={{ headerShown: false }}
 					/>
 				</Stack>
 			</ThemeProvider>

@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React from "react";
 import { useSearchParams } from "expo-router";
-import allTweets from "../../assets/data/tweets";
-import TweetCard from "../../components/TweetCard";
+import allTweets from "../../../../../assets/data/tweets";
+import TweetCard from "../../../../../components/TweetCard";
 
 const DetailScreen = () => {
 	const { id } = useSearchParams();
