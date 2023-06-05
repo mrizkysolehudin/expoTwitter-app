@@ -1,20 +1,41 @@
-import { FlatList, StyleSheet } from "react-native";
-
-import { View } from "../../../../components/Themed";
+import {
+	ActivityIndicator,
+	FlatList,
+	StyleSheet,
+	Text,
+	View,
+} from "react-native";
 import TweetCard from "../../../../components/TweetCard";
-import allTweets from "../../../../assets/data/tweets";
 import { Link } from "expo-router";
 import { Entypo } from "@expo/vector-icons";
+import { useQuery } from "@tanstack/react-query";
+import { getAllTweets } from "../../../../utils/api";
 
-export default function TabOneScreen() {
+export default function FeedScreen() {
+	const { data, isLoading, error } = useQuery({
+		queryKey: ["allTweets"],
+		queryFn: getAllTweets,
+	});
+
+	if (isLoading) return <ActivityIndicator />;
+
+	if (error) return <Text>{error.message}</Text>;
+
 	return (
-		<View>
+		<View style={{ flex: 1 }}>
 			<FlatList
-				data={allTweets}
+				data={data}
 				renderItem={({ item }) => <TweetCard tweetItem={item} />}
 			/>
 
-			<Link href="new-tweet" asChild>
+			<Link
+				href="new-tweet"
+				asChild
+				style={{
+					position: "absolute",
+					bottom: 20,
+					right: 20,
+				}}>
 				<Entypo
 					name="plus"
 					size={24}
@@ -43,10 +64,6 @@ const styles = StyleSheet.create({
 	},
 	newTweetButton: {
 		backgroundColor: "#1C9BF0",
-
-		position: "absolute",
-		bottom: 20,
-		right: 20,
 
 		padding: 14,
 		borderRadius: 30,
