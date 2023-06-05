@@ -61,7 +61,21 @@ export const signInAuth = async (email) => {
 		},
 		body: JSON.stringify(email),
 	});
-	if (res.status === 200) {
+	if (res.status !== 201) {
 		throw new Error("error auth login");
+	}
+};
+
+// auth confirmation code
+export const confirmAuth = async (data) => {
+	const res = await fetch(`${API_URL}/auth/authenticate`, {
+		method: "POST",
+		headers: {
+			"Content-type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
+	if (res.status !== 200) {
+		throw new Error("error auth confirmation code");
 	}
 };

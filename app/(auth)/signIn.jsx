@@ -17,6 +17,11 @@ const SignInScreen = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const handleSignIn = async () => {
+		if (email === "") {
+			Alert.alert("email is required");
+			return;
+		}
+
 		setIsLoading(true);
 
 		try {
