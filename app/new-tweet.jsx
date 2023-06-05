@@ -5,28 +5,47 @@ import {
 	Text,
 	View,
 	Image,
+	ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Entypo } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createTweet } from "../utils/api";
 
 const NewTweetScreen = () => {
+	const router = useRouter();
+	const [newTweet, setNewTweet] = useState("");
+
+	const queryClient = useQueryClient();
+
+	const { mutateAsync, isLoading, error, isError } = useMutation({
+		mutationFn: createTweet,
+		onSuccess: (data) => {
+			// "allTweets" query untuk mengidentifikasi data yang akan diperbarui (dalam kasus ini, data semua tweet). Saat selesai membuat tweet, data semua tweet otomatis langsung diperbarui.
+			queryClient.setQueriesData(["allTweets"], (existingTweets) => {
+				return [data, ...existingTweets];
+			});
+		},
+	});
+
+	const handlePostingTweet = async () => {
+		try {
+			await mutateAsync({ content: newTweet });
+
+			setNewTweet("");
+			router.back();
+		} catch (error) {
+			console.log("error: ", error.message);
+		}
+	};
+
 	const user = {
 		id: "u1",
 		username: "mrizkysolehudin",
 		name: "rizky",
 		image: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/zuck.jpeg",
-	};
-
-	const router = useRouter();
-	const [inputNewTweet, setInputNewTweet] = useState("");
-
-	const handlePostingTweet = () => {
-		setInputNewTweet(inputNewTweet);
-		console.warn("Posting the tweet ", inputNewTweet);
-
-		router.back();
 	};
 
 	return (
@@ -42,6 +61,8 @@ const NewTweetScreen = () => {
 					<Link href="../">
 						<Entypo name="cross" size={25} />
 					</Link>
+
+					{isLoading && <ActivityIndicator />}
 
 					<Pressable
 						onPress={handlePostingTweet}
@@ -80,14 +101,16 @@ const NewTweetScreen = () => {
 					</View>
 
 					<TextInput
-						value={inputNewTweet}
-						onChange={setInputNewTweet}
+						value={newTweet}
+						onChangeText={setNewTweet}
 						placeholder="Apa yang sedang terjadi?"
 						multiline
 						numberOfLines={6}
 						style={{ flex: 1, marginLeft: 60 }}
 					/>
 				</View>
+
+				{isError && <Text>{error.message}</Text>}
 			</View>
 		</SafeAreaView>
 	);

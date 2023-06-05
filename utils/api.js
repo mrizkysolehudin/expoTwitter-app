@@ -32,3 +32,21 @@ export const getOneTweet = async (id) => {
 
 	return await res.json();
 };
+
+export const createTweet = async (newTweet) => {
+	const res = await fetch(`${API_URL}/tweet`, {
+		method: "POST",
+		headers: {
+			Authorization: `Bearer ${AUTH_TOKEN}`,
+			"Content-type": "application/json",
+		},
+		body: JSON.stringify(newTweet),
+	});
+	if (res.status === 401) {
+		throw new Error("Not authorized. Please sign in");
+	}
+	if (res.status !== 201) {
+		throw new Error("error creating tweet");
+	}
+	return await res.json();
+};
