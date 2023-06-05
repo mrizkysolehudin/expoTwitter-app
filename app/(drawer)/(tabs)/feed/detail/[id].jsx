@@ -1,14 +1,21 @@
-import { Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import React from "react";
 import { useSearchParams } from "expo-router";
-import allTweets from "../../../../../assets/data/tweets";
 import TweetCard from "../../../../../components/TweetCard";
+import { useQuery } from "@tanstack/react-query";
+import { getOneTweet } from "../../../../../utils/api";
 
 const DetailScreen = () => {
 	const { id } = useSearchParams();
 
-	const tweetDetail = allTweets.find((t) => t.id === id);
-	if (!tweetDetail) {
+	const { data, isLoading, error } = useQuery({
+		queryKey: ["oneTweet", id],
+		queryFn: () => getOneTweet(id),
+	});
+
+	if (isLoading) return <ActivityIndicator />;
+
+	if (error) {
 		return (
 			<View
 				style={{
@@ -24,7 +31,7 @@ const DetailScreen = () => {
 		);
 	}
 
-	return <TweetCard tweetItem={tweetDetail} />;
+	return <TweetCard tweetItem={data} />;
 };
 
 export default DetailScreen;
