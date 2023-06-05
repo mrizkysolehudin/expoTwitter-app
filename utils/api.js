@@ -48,5 +48,20 @@ export const createTweet = async (newTweet) => {
 	if (res.status !== 201) {
 		throw new Error("error creating tweet");
 	}
+
 	return await res.json();
+};
+
+// auth login
+export const signInAuth = async (email) => {
+	const res = await fetch(`${API_URL}/auth/login`, {
+		method: "POST",
+		headers: {
+			"Content-type": "application/json",
+		},
+		body: JSON.stringify(email),
+	});
+	if (res.status === 200) {
+		throw new Error("error auth login");
+	}
 };
