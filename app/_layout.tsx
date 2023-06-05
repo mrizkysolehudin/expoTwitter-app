@@ -67,6 +67,10 @@ function RootLayoutNav() {
 						name="(auth)/signIn"
 						options={{ headerShown: false }}
 					/>
+					<Stack.Screen
+						name="(auth)/authenticate"
+						options={{ headerShown: false }}
+					/>
 				</Stack>
 			</ThemeProvider>
 		</QueryClientProvider>

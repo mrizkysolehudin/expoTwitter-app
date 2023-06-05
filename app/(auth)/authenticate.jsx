@@ -1,7 +1,7 @@
-import { View, Text, TextInput, Pressable } from "react-native";
+import { View, Text, Pressable, TextInput } from "react-native";
 import React from "react";
 
-const SignInScreen = () => {
+const AuthenticateScreen = () => {
 	return (
 		<View
 			style={{
@@ -18,12 +18,12 @@ const SignInScreen = () => {
 					marginHorizontal: 20,
 					alignItems: "center",
 				}}>
-				<Text style={{ fontSize: 27, fontWeight: 600 }}>
-					Sign in or create an account
+				<Text style={{ fontSize: 30, fontWeight: 600 }}>
+					Confirm your email
 				</Text>
 
 				<TextInput
-					placeholder="enter email"
+					placeholder="enter code"
 					style={{
 						borderWidth: 1,
 						width: "80%",
@@ -41,7 +41,7 @@ const SignInScreen = () => {
 						backgroundColor: "#1C9BF0",
 						width: "80%",
 						alignItems: "center",
-						height: 30,
+						height: 32,
 						justifyContent: "center",
 						paddingBottom: 2,
 						borderRadius: 3,
@@ -53,7 +53,7 @@ const SignInScreen = () => {
 							fontSize: 17,
 							fontWeight: 500,
 						}}>
-						Sign in
+						Confirm
 					</Text>
 				</Pressable>
 			</View>
@@ -61,4 +61,4 @@ const SignInScreen = () => {
 	);
 };
 
-export default SignInScreen;
+export default AuthenticateScreen;
